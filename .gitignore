@@ -1,0 +1,27 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Build folders
+build/
+dist/
+.vite/
+
+# VSCode settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ENV files (ignore all env files)
+.env
+.env.*
+*/.env
+*/.env.*
+
+# Backend-specific (explicit)
+backend/.env
+backend/.env.*
