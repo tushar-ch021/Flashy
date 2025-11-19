@@ -139,7 +139,7 @@ const Stories = ({ userName, ProfileImage, story }) => {
         {isLoading ? (
           <div className="flex items-center px-4">Loading stories...</div>
         ) : loadError ? (
-          <div className="text-sm text-red-500 px-4">Failed to load stories</div>
+          <div className="text-sm text-red-500 px-4"></div>
         ) : followerStories.length === 0 ? (
           <div className="text-sm text-gray-500 px-4">No stories from followers</div>
         ) : (
