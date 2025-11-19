@@ -1,5 +1,7 @@
 import { en } from "@faker-js/faker";
 import mongoose from "mongoose";
+import { faker } from '@faker-js/faker';
+
 const userSchema=new mongoose.Schema({
     name:{
         type:String,
