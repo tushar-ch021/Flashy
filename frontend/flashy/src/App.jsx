@@ -21,7 +21,7 @@ import Notifications from './pages/Notifications'
 import Messages from './pages/Messages'
 import Search from './pages/Search'
 import SocketListener from './components/SocketListener'
-export const serverUrl='http://localhost:8000'
+export const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 const App = () => {
   // Fetch initial data on mount
   const fetchCurrentUser = GetCurrentUser();
