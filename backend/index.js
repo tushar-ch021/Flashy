@@ -15,10 +15,32 @@ import { initSocket } from './socket.js'
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 5000
+
+// Allowed origins: local dev + optional FRONTEND_URL from environment
+const allowedOrigins = [
+  'http://localhost:5173',        // your vite dev
+  'http://localhost:3000'         // optional (if you use CRA)
+];
+
+// if FRONTEND_URL is set in env, add it
+if (process.env.FRONTEND_URL) {
+  allowedOrigins.push(process.env.FRONTEND_URL);
+}
+
 app.use(cors({
-  origin: "http://localhost:5173",
-  credentials: true
-}))
+  origin: (origin, callback) => {
+    // allow requests with no origin (like mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    // otherwise block it
+    return callback(new Error(`CORS policy: Origin ${origin} not allowed`));
+  },
+  credentials: true,
+}));
+
 app.use(express.json())
 app.use(cookieParser())
 
@@ -34,6 +56,5 @@ initSocket(server)
 
 server.listen(port, () => {
   connectDb()
-  console.log(`Server is running on http://localhost:${port}`)
+  console.log(`Server is running on port ${port}`)
 })
-// tushar245101
